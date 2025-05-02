@@ -3,41 +3,46 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    min-height: 100vh;
+    
+    
 }
 
-/* Arka plan görseli */
-.background img {
-    width: 100%;
-    max-width: 800px;
-    margin: 40px auto;
-    display: block;
+img{
+    width: 800px;
+    position: relative;
+    margin-left: 25%;
+    top: 20px;
+    z-index: 1;
 }
-
-/* Merkezdeki kutu */
 .container {
+    position: relative;
     background-color: #fff;
     padding: 30px;
     border-radius: 6px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin: -40px auto 60px auto;  /* üstten biraz yukarıya çekiyoruz */
-    width: 90%;
-    max-width: 500px;
+    margin-top: -428px;
+    margin-left: 438px;
     z-index: 2;
+    width: 488px;
+    height: 275px;
 }
 
-/* Başlık */
+#shortenForm img{
+    position: relative;
+    width: 50px;
+    margin-left: -20px;
+    margin-top: -30px;
+}
+
+
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
 }
-
-/* Form öğeleri */
 input[type="url"] {
     width: 100%;
     padding: 10px;
@@ -46,7 +51,6 @@ input[type="url"] {
     border-radius: 4px;
     font-size: 14px;
 }
-
 button {
     padding: 10px 20px;
     background: transparent;
@@ -55,42 +59,14 @@ button {
     border-radius: 58px;
     cursor: pointer;
     width: 50px;
+    
 }
 
-/* Form içindeki görsel */
-#shortenForm img {
-    position: relative;
-    width: 50px;
-    margin-left: -20px;
-    margin-top: -30px;
-}
-
-/* Sonuç kutusu */
 #shortUrlContainer {
     margin-top: 20px;
     display: none;
 }
-
 #shortUrl {
     font-weight: bold;
     color: #2c3e50;
-}
-
-/* Geçmiş URL tablosu */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    overflow-x: auto;
-    word-break: break-word;
-}
-
-th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f0f0f0;
 }
