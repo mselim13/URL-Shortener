@@ -1,0 +1,32 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9]{6})$ redirect.php?code=$1 [L]
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # CSS ve JS dosyaları 1 hafta boyunca tarayıcıda tutulur
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType application/x-javascript "access plus 1 week"
+
+  # Görseller 1 ay boyunca cache'te kalır
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+
+  # HTML her zaman taze alınır
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=86400, public"
+    </FilesMatch>
+</IfModule>
+# TEST: Tarayıcıya özel başlık gönder
+Header set X-Test-Header "htaccess çalışıyor"
