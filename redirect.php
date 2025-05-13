@@ -47,3 +47,34 @@ if (isset($_GET['code'])) {
 } else {
     echo "Geçersiz kısa URL.";
 }
+require_once 'cache.php';
+require_once 'db.php'; // URL'leri çektiğin yer
+
+$short_code = $_GET['c'] ?? null;
+
+if (!$short_code) {
+    die("Kod belirtilmedi.");
+}
+
+// 1. Önce cache'e bak
+$long_url = get_from_cache($short_code);
+
+if (!$long_url) {
+    // 2. Yoksa veritabanından çek
+    $stmt = $pdo->prepare("SELECT long_url FROM urls WHERE short_code = ?");
+    $stmt->execute([$short_code]);
+    $row = $stmt->fetch();
+
+    if (!$row) {
+        die("URL bulunamadı.");
+    }
+
+    $long_url = $row['long_url'];
+
+    // 3. Cache'e ekle
+    set_to_cache($short_code, $long_url, 120); // 2 dakika cache'le
+}
+
+// 4. Yönlendir
+header("Location: $long_url");
+exit;
